@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import rowimg from '../assets/rowpost.jpg'
 import axios from '../Axios'
 import RowCard from './RowCard'
 
