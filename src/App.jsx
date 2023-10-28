@@ -1,16 +1,14 @@
 import React from 'react'
 import Navbar from './Components/Navbar'
-import Home from './Components/Home'
-import RowPost from './Components/RowPost'
+import HomePage from './Pages/HomePage'
+import Footer from './Components/Footer'
 
 function App() {
   return (
     <div>
       <Navbar/>
-      <Home/>
-      <RowPost/>
-      <RowPost/>
-      <RowPost/>
+      <HomePage/>
+      <Footer/>
     </div>
   )
 }

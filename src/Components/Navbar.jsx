@@ -7,8 +7,8 @@ function Navbar() {
         setMobiletoggle(!mobileToggle)
     }
     return (
-        <div className='fixed top-0 left-0 right-0 z-50'>
-            <div className="navbar flex justify-between  p-3">
+        <div className='fixed top-0 left-0 right-0 z-50 '>
+            <div className="navbar flex justify-between bg-black-10/2 bg:blur bg-opacity-30 backdrop-blur  p-3">
                 <div className="flex ">
                     <a className="btn btn-ghost normal-case text-xl md:text-3xl font-bold text-[#C3073F]">Cinematrix</a>
                 </div>
@@ -23,24 +23,11 @@ function Navbar() {
                         </li>
                         <li className="lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f] transition delay-75 duration-150 ease-in-out">
                             {/* <Link to="about" smooth={true} duration={500}>About Me</Link> */}
-                            <a href="">Home</a>
+                            <a href="">Movies</a>
                         </li>
                         <li className="lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f]  transition delay-75 duration-150 ease-in-out">
                             {/* <Link to="project" smooth={true} duration={500}>Projects</Link> */}
-                            <a href="">Home</a>
-                        </li>
-                        <li className="lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f]  transition delay-75 duration-150 ease-in-out">
-
-                            {/* <Link to="knowledge" smooth={true} duration={500}>Knowledge</Link> */}
-                            <a href="">Home</a>
-                        </li>
-                        <li className="lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f]  transition delay-75 duration-150 ease-in-out">
-                            {/* <Link to="skills" smooth={true} duration={500}>Skills</Link> */}
-                            <a href="">Home</a>
-                        </li>
-                        <li className="lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f]  transition delay-75 duration-150 ease-in-out">
-                            {/* <Link to="contact" smooth={true} duration={500}>Contact</Link> */}
-                            <a href="">Home</a>
+                            <a href="">TV Shows</a>
                         </li>
                     </ul>
                 </div>
@@ -62,19 +49,11 @@ function Navbar() {
                             </li>
                             <li className='hover:text-[#c3073f] text-slate-200 transition delay-75 duration-150 ease-in-out'>
                                 {/* <Link to="about" smooth={true} duration={500}>About Me</Link> */}
-                                <a href="">Home</a>
+                                <a href="">Movies</a>
                             </li>
                             <li className='hover:text-[#c3073f] text-slate-200 transition delay-75 duration-150 ease-in-out'>
                                 {/* <Link to="knowledge" smooth={true} duration={500}>Knowledge</Link> */}
-                                <a href="">Home</a>
-                            </li>
-                            <li className='hover:text-[#c3073f] text-slate-200 transition delay-75 duration-150 ease-in-out'>
-                                {/* <Link to="skills" smooth={true} duration={500}>Skills</Link> */}
-                                <a href="">Home</a>
-                            </li>
-                            <li className='hover:text-[#c3073f] text-slate-200 transition delay-75 duration-150 ease-in-out'>
-                                {/* <Link to="contact" smooth={true} duration={500}>Contact</Link> */}
-                                <a href="">Home</a>
+                                <a href="">TV Shows</a>
                             </li>
                         </ul>
                     </div>
