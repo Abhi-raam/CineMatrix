@@ -8,7 +8,7 @@ function Navbar() {
     }
     return (
         <div className='fixed top-0 left-0 right-0 z-50 '>
-            <div className="navbar flex justify-between bg-black-10/2 bg:blur bg-opacity-30 backdrop-blur  p-3">
+            <div className="navbar flex justify-between bg-black-10/2  bg-opacity-10 backdrop-blur  p-3">
                 <div className="flex ">
                     <a className="btn btn-ghost normal-case text-xl md:text-3xl font-bold text-[#C3073F]">Cinematrix</a>
                 </div>
@@ -41,7 +41,7 @@ function Navbar() {
             {/* mobile view */}
             {mobileToggle && (
                 <div className="relative">
-                    <div className='grid bg-black justify-end font-semibold absolute top-0 left-0 right-0'>
+                    <div className='grid bg-black-10/2 bg:blur bg-opacity-30 backdrop-blur justify-end font-semibold absolute top-0 left-0 right-0'>
                         <ul className="mr-3 space-y-2" >
                             <li className='hover:text-[#c3073f] text-slate-200 transition delay-75 duration-150 ease-in-out'>
                                 {/* <Link to="home" smooth={true} duration={500}>Home</Link> */}
