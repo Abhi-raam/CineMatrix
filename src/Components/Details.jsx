@@ -1,6 +1,14 @@
 import React from 'react'
 import { imageUrl } from '../Constants/Const'
-function Details({movieDetails}) {
+import dayjs from 'dayjs';
+function Details({ movieDetails, credits }) {
+    let director = credits ? credits.crew.filter((crew) => crew.job === "Director").map((director) => director ? director.name : null) : null
+    let writer = credits?.crew.filter((crew)=>crew.job === "Writer").map((writer)=>writer?.name)
+    function mintohrs(min) {
+        let totalhrs = Math.floor(min / 60)
+        let remmin = Math.floor(min % 60)
+        return (totalhrs + "h " + remmin + "min")
+    }
     return (
         <div>
             <div>
@@ -8,24 +16,37 @@ function Details({movieDetails}) {
                     <img src={`${imageUrl + movieDetails.poster_path}`} alt="poster" className='hidden ml-9 md:block w-60 rounded-xl' />
                     <div className='space-y-5 pl-4'>
                         <div className='space-y-3'>
-                            <h1 className='text-6xl font-semibold'>Movie name</h1>
-                            <h1 className='text-gray-200 font-semibold text-sm'>Fight for the light. Silence the darkness.</h1>
+                            <h1 className='text-6xl font-semibold'>{movieDetails ? movieDetails.title || movieDetails.name : null}</h1>
+                            <h1 className='text-gray-200 font-semibold text-sm'>"{movieDetails ? movieDetails.tagline : null}"</h1>
                         </div>
-                        <div className='flex  space-x-9 '>
-                            <h1 className='border-2 rounded-full px-3'>Action</h1>
-                            <h1 className='border-2 rounded-full px-3'>Action</h1>
+                        <div className='flex flex-wrap gap-4'>
+                            {movieDetails.genres ? movieDetails.genres.map((genre, index) => (
+                                <h1 className='border-2 rounded-full px-3 ' key={index}>{genre.name}</h1>
+                            )) : null}
                         </div>
                         <div>
-                            <p className=" text-sm font-bold  text-gray-200 ">The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.</p>
+                            <p className=" text-sm font-bold max-w-xs md:max-w-md  text-gray-200 ">{movieDetails ? movieDetails.overview : null}</p>
                         </div>
                         <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5  '>
-                            <h1 className="text-gray-300 font-medium"><span className='font-bold text-md'>Status</span>: Released</h1>
-                            <h1 className="text-gray-300 font-medium"><span className='font-bold text-md'>Release Date </span>: Jul 03 2023</h1>
-                            <h1 className="text-gray-300 font-medium"><span className='font-bold text-md'>Runtime</span>: 2h 11m</h1>
+                            <h1 className="text-gray-300 font-medium"><span className='font-bold text-md'>Status</span> : {movieDetails ? movieDetails.status : null}</h1>
+                            <h1 className="text-gray-300 font-medium"><span className='font-bold text-md'>Release Date </span> : {dayjs(movieDetails ? movieDetails.release_date : null).format("MMM DD YYYY")}</h1>
+                            <h1 className="text-gray-300 font-medium"><span className='font-bold text-md'>Runtime</span> : {mintohrs(movieDetails ? movieDetails.runtime : null)}</h1>
                         </div>
-                        <div className='grid grid-cols-1 space-y-3 md:space-y-0 md:grid-cols-2'>
-                            <h1 className="text-gray-300 font-medium"><span className='font-bold text-md'>Director:</span> Alejandro Gómez Monteverde</h1>
-                            <h1 className="text-gray-300 font-medium"><span className='font-bold text-md'>Writer:</span> Alejandro Gómez Monteverde</h1>
+                        <div className='flex flex-wrap gap-6 items-center'>
+                            <h3>Director :
+                                {director?.map((director, index) => (
+                                    <span key={index}> {director}
+                                        {director.length > 1 ? "," : " "}
+                                    </span>
+                                ))}
+                            </h3>
+                            <h3>Writer :
+                                {writer?.map((writer,index)=>(
+                                    <span key={index}> {writer}
+                                    {writer.length > 1? "," : " "}
+                                    </span>
+                                ))}
+                            </h3>
                         </div>
                     </div>
                 </div>

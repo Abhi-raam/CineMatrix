@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react'
 import axios from '../Axios'
 import { apiKey, imageUrl,title } from '../Constants/Const';
 import { BsPlay } from 'react-icons/bs';
+import dayjs from 'dayjs';
 function Home() {
     const [movie, setMovie] = useState([])
     const trending = movie[Math.floor(Math.random() * movie.length)];
     // console.log(trending);
-    //formatting the date
-    const releaseDate = trending ? trending.release_date || trending.first_air_date : null;
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    const formattedDate = new Date(releaseDate).toLocaleDateString(undefined, options);
-    // console.log(formattedDate);
 
     useEffect(() => {
         axios.get(title.upcoming).then((response) => {
@@ -22,7 +18,7 @@ function Home() {
         <div className="w-[100vw] h-[100vh] relative text-white ">
             <div className="w-[100vw] h-full">
                 <div className="absolute w-full h-[100vh] bg-gradient-to-r from-black"></div>
-                <img src={`${trending ? imageUrl + trending.backdrop_path : null}`} className="w-full  h-[100vh] object-cover object-top pt-10" />
+                <img src={`${trending ? imageUrl + trending.backdrop_path : null}`} className="w-full  h-[90vh] object-cover object-top mt-[4.5rem]" />
                 <div className="absolute  top-[35%] text-4xl font-extrabold sm:ml-7 px-3 flex flex-col gap-4">
                     <div>
                         <h1 className="font-bold text-6xl ">{trending ? trending.title || trending.name : null}</h1>
@@ -37,7 +33,7 @@ function Home() {
                         </button>
                     </div>
                     <div>
-                        <p className="text-gray-500 text-xs font-medium mb-2">{trending ? formattedDate : null}</p>
+                        <p className="text-gray-500 text-xs font-medium mb-2">{dayjs(trending ? trending.release_date || trending.first_air_date : null).format("MMM DD YYYY")}</p>
                         <p className="text-sm max-w-4xl font-medium sm:w-[65%]">{trending ? trending.overview : null}</p>
                     </div>
                 </div>

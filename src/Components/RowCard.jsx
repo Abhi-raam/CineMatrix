@@ -3,6 +3,7 @@ import axios from '../Axios';
 import { imageUrl, title } from '../Constants/Const';
 import CircleRating from './CircleRating';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 function RowCard({ movie, type }) {
   const [genreData, setGenreData] = useState()
@@ -20,9 +21,6 @@ function RowCard({ movie, type }) {
   };
   const movieGenreNames = getGenreNames(movie.genre_ids);
   // console.log(movieGenreNames.slice(0, 2));
-  const releaseDate = movie ? movie.release_date || movie.first_air_date : null;
-  const options = { year: 'numeric', month: 'short', day: 'numeric' };
-  const formattedDate = new Date(releaseDate).toLocaleDateString(undefined, options);
   return (
     <div className='relative hover:scale-110 transition duration-300 ease-in-out '>
       <Link to={`/details/${type}/${movie.id}`} >
@@ -43,7 +41,7 @@ function RowCard({ movie, type }) {
 
         <div className=' text-white pt-4 text-start max-w-[15rem] '>
           <h1 className='uppercase font-semibold'>{movie.title || movie.original_name}</h1>
-          <p className="text-gray-500 text-xs font-medium mb-2">{movie ? formattedDate : null}</p>
+          <p className="text-gray-500 text-xs font-medium mb-2">{dayjs(movie ? movie.release_date || movie.first_air_date : null).format("MMM DD YYYY")}</p>
         </div>
       </Link>
     </div>
