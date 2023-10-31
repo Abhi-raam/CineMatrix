@@ -1,9 +1,10 @@
 import React from 'react'
 import { imageUrl } from '../Constants/Const'
 import dayjs from 'dayjs';
-function Details({ movieDetails, credits }) {
-    let director = credits ? credits.crew.filter((crew) => crew.job === "Director").map((director) => director ? director.name : null) : null
-    let writer = credits?.crew.filter((crew)=>crew.job === "Writer").map((writer)=>writer?.name)
+function Details({ movieDetails }) {
+    // console.log(movieDetails.credits?movieDetails.credits.crew :"no data found");
+    let director = movieDetails.credits ?movieDetails.credits.crew.filter((crew) => crew.job === "Director").map((director) => director ? director.name : null) : null
+    let writer = movieDetails.credits?.crew.filter((crew)=>crew.job ===  "Story" ).map((writer)=>writer?.name)
     function mintohrs(min) {
         let totalhrs = Math.floor(min / 60)
         let remmin = Math.floor(min % 60)
@@ -16,7 +17,7 @@ function Details({ movieDetails, credits }) {
                     <img src={`${imageUrl + movieDetails.poster_path}`} alt="poster" className='hidden ml-9 md:block w-60 rounded-xl' />
                     <div className='space-y-5 pl-4'>
                         <div className='space-y-3'>
-                            <h1 className='text-6xl font-semibold'>{movieDetails ? movieDetails.title || movieDetails.name : null}</h1>
+                            <h1 className='text-6xl font-semibold max-w-3xl'>{movieDetails ? movieDetails.title || movieDetails.name : null}</h1>
                             <h1 className='text-gray-200 font-semibold text-sm'>"{movieDetails ? movieDetails.tagline : null}"</h1>
                         </div>
                         <div className='flex flex-wrap gap-4'>

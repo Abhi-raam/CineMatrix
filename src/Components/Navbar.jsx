@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 // import { Link } from 'react-scroll';
+import { Link } from "react-router-dom";
 
 function Navbar() {
     const [mobileToggle, setMobiletoggle] = useState(false)
@@ -18,11 +19,12 @@ function Navbar() {
                 <div>
                     <ul className="flex  space-x-6 pr-4  font-semibold">
                         <li className='lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f]  transition delay-75 duration-150 ease-in-out'>
-                            {/* <Link to="home" smooth={true} duration={500}>Home</Link> */}
-                            <a href="">Home</a>
+                            {/* <Link to={/} >Home</Link> */}
+                            <Link to={"/"} >Home</Link>
+                            {/* <a href="">Home</a> */}
                         </li>
                         <li className="lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f] transition delay-75 duration-150 ease-in-out">
-                            {/* <Link to="about" smooth={true} duration={500}>About Me</Link> */}
+                            {/* <Link to={"/explore/movie"}>Movies</Link> */}
                             <a href="">Movies</a>
                         </li>
                         <li className="lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f]  transition delay-75 duration-150 ease-in-out">

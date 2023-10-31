@@ -3,6 +3,7 @@ export const apiKey = import.meta.env.VITE_API_KEY
 export const imageUrl = 'https://image.tmdb.org/t/p/original/'
 const cast = 'https://api.themoviedb.org/3/movie/507089/credits?api_key=072c08b07f1cd6da85737296d996dc17'
 const movieDetails = "https://api.themoviedb.org/3/movie/movieId?api_key=072c08b07f1cd6da85737296d996dc17"
+const all = "https://api.themoviedb.org/3/movie/1008042?append_to_response=credits&language=en-US&api_key=072c08b07f1cd6da85737296d996dc17"
 export const title = {
     generlist :`/genre/movie/list?api_key=${apiKey}`,
     trending :`/trending/movie/day?api_key=${apiKey}`,
