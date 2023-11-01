@@ -1,4 +1,5 @@
 import React from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { imageUrl } from '../Constants/Const'
 import dayjs from 'dayjs';
 function Details({ movieDetails }) {
@@ -13,7 +14,7 @@ function Details({ movieDetails }) {
         <div>
             <div>
                 <div className='bottom-1 absolute text-white w-full  flex justify-center space-x-4 '>
-                    <img src={`${imageUrl + movieDetails.poster_path}`} alt="poster" className='hidden ml-9 md:block w-60 rounded-xl' />
+                    <LazyLoadImage src={`${imageUrl + movieDetails.poster_path}`} alt="poster" className='hidden ml-9 md:block w-60 rounded-xl' />
                     <div className='space-y-5 pl-4'>
                         <div className='space-y-3'>
                             <h1 className='text-6xl font-semibold max-w-3xl'>{movieDetails ? movieDetails.title || movieDetails.name : null}</h1>

@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 function HomePage() {
     const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 2, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathname]);
     return (
         <div className='pb-8'>

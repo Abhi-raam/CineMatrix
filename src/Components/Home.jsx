@@ -23,7 +23,7 @@ function Home() {
                         <h1 className="font-bold text-6xl ">{trending ? trending.title || trending.name : null}</h1>
                     </div>
                     <div className="flex gap-2 items-center">
-                        <button className="text-black bg-teal-600 text-sm font-medium px-4 py-2 flex items-center gap-1">
+                        <button className="text-black bg-[#c3073f] text-sm font-medium px-4 py-2 flex items-center gap-1">
                             <BsPlay size={18} />
                             Play
                         </button>

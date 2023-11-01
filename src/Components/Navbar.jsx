@@ -1,11 +1,28 @@
 import React, { useState } from 'react'
 // import { Link } from 'react-scroll';
-import { Link } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import { Link,useNavigate } from "react-router-dom";
 
 function Navbar() {
+    const navigate = useNavigate();
     const [mobileToggle, setMobiletoggle] = useState(false)
+    const [search, setSearch] = useState()
     const buttonClick = () => {
         setMobiletoggle(!mobileToggle)
+    }
+    function enterClick(event){
+        if(event.key === "Enter" && search?.length>0){
+            navigate(`/search/${search}`);
+            setSearch("")
+            // console.log("enter button clicked");
+            // console.log(search);
+        }
+    }
+    function searchBtn() {
+        navigate(`/search/${search}`);
+        setSearch("")
+        // console.log("search button clicked");
+        // console.log(search);
     }
     return (
         <div className='fixed top-0 left-0 right-0 z-50 '>
@@ -13,9 +30,12 @@ function Navbar() {
                 <div className="flex ">
                     <a className="btn btn-ghost normal-case text-xl md:text-3xl font-bold text-[#C3073F]">Cinematrix</a>
                 </div>
-                {/* <div >
-                    <input className='rounded-full  border-2 border-[#c3073f] outline-none p-2 px-9' placeholder='Search ...' type="search"  name="" id="" />
-                </div> */}
+                <div className='relative flex items-center' >
+                    <input className='rounded-full bg-white w-36 md:w-96 px-3 p-1 border-2 border-[#c3073f] outline-none' placeholder='Search ...' type="search" value={search} name="" id="" onChange={((e)=>{setSearch(e.target.value)})} onKeyUp={enterClick} />
+                    <div className="absolute right-3">
+                        <BsSearch className='cursor-pointer' onClick={searchBtn} />
+                    </div>
+                </div>
                 <div>
                     <ul className="flex  space-x-6 pr-4  font-semibold">
                         <li className='lg:inline-block hidden cursor-pointer text-slate-200 hover:text-[#c3073f]  transition delay-75 duration-150 ease-in-out'>
@@ -33,7 +53,7 @@ function Navbar() {
                         </li>
                     </ul>
                 </div>
-                <div className="flex-none pr-4 lg:hidden">
+                <div className="flex-none  lg:hidden">
                     <button className="btn btn-square btn-ghost text-[#c3073f] " onClick={buttonClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
@@ -47,7 +67,7 @@ function Navbar() {
                         <ul className="mr-3 space-y-2" >
                             <li className='hover:text-[#c3073f] text-slate-200 transition delay-75 duration-150 ease-in-out'>
                                 {/* <Link to="home" smooth={true} duration={500}>Home</Link> */}
-                                <a href="">Home</a>
+                                <Link to={"/"} >Home</Link>
                             </li>
                             <li className='hover:text-[#c3073f] text-slate-200 transition delay-75 duration-150 ease-in-out'>
                                 {/* <Link to="about" smooth={true} duration={500}>About Me</Link> */}

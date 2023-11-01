@@ -12,21 +12,18 @@ import Recommendation from '../Components/Recommendation';
 function MovieDetails() {
     const { type, id } = useParams()
     const [movieDetails, setMovieDetails] = useState({})
-
+    const { pathname } = useLocation();
     useEffect(() => {
         axios.get(`/${type}/${id}?append_to_response=credits,images,videos,similar,recommendations&api_key=${apiKey}`).then((response) => {
             setMovieDetails(response.data);
-            console.log(response.data);
+            // e.log(response.data);
         })
             .catch((error) => {
                 console.error(error); // Log any errors
             });
+            window.scrollTo({ top: 0, behavior: "smooth" });
 
-    }, [id])
-    const { pathname } = useLocation();
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }, [pathname]);
+    }, [pathname])
     return (
         <div className='bg-black'>
             <div className="absolute w-full h-[100vh] bg-gradient-to-t from-black"></div>
