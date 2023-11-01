@@ -6,7 +6,6 @@ import dayjs from 'dayjs';
 function Home() {
     const [movie, setMovie] = useState([])
     const trending = movie[Math.floor(Math.random() * movie.length)];
-    // console.log(trending);
 
     useEffect(() => {
         axios.get(title.upcoming).then((response) => {

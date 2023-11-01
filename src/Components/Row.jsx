@@ -7,8 +7,6 @@ function Row({ name, movieurl }) {
     useEffect(() => {
         axios.get(movieurl).then((response) => {
             setMovie(response.data.results)
-            // console.log(movie);
-            // console.log(response.data.results);
         })
     }, [movieurl])
     return (

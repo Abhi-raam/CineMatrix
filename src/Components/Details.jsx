@@ -2,7 +2,6 @@ import React from 'react'
 import { imageUrl } from '../Constants/Const'
 import dayjs from 'dayjs';
 function Details({ movieDetails }) {
-    // console.log(movieDetails.credits?movieDetails.credits.crew :"no data found");
     let director = movieDetails.credits ?movieDetails.credits.crew.filter((crew) => crew.job === "Director").map((director) => director ? director.name : null) : null
     let writer = movieDetails.credits?.crew.filter((crew)=>crew.job ===  "Story" ).map((writer)=>writer?.name)
     function mintohrs(min) {

@@ -20,10 +20,9 @@ function RowCard({ movie, type }) {
     });
   };
   const movieGenreNames = getGenreNames(movie.genre_ids);
-  // console.log(movieGenreNames.slice(0, 2));
   return (
     <div className='relative hover:scale-110 transition duration-300 ease-in-out '>
-      <Link to={`/details/${type}/${movie.id}`} >
+      <Link to={`/details/${type || data?.media_type}/${movie.id}`} >
 
         <div className='max-w-max rounded-md w-40 md:w-60 lg:w-72 mx-auto p-3'>
           <img className='rounded-md w-full' src={imageUrl + `${movie.poster_path}`} alt="" />

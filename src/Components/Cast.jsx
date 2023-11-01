@@ -2,8 +2,6 @@ import React from 'react'
 import { imageUrl } from '../Constants/Const';
 import avatar from "../assets/avatar.jpg"
 function Cast({ movieDetails }) {
-    console.log(movieDetails.credits?movieDetails.credits.cast : "no data");
-    // console.log(credits?.cast);
     return (
         <div className=''>
             <div>

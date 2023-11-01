@@ -6,20 +6,23 @@ import Details from '../Components/Details';
 import Cast from '../Components/Cast';
 import Backdrops from '../Components/Backdrops';
 import Trailer from '../Components/Trailer';
+import Similar from '../Components/Similar';
+import Recommendation from '../Components/Recommendation';
 
 function MovieDetails() {
     const { type, id } = useParams()
     const [movieDetails, setMovieDetails] = useState({})
+
     useEffect(() => {
-        axios.get(`/${type}/${id}?append_to_response=credits,images,videos&api_key=${apiKey}`).then((response) => {
-            setMovieDetails(response.data)
-            // window.scrollTo(0, 0);
+        axios.get(`/${type}/${id}?append_to_response=credits,images,videos,similar,recommendations&api_key=${apiKey}`).then((response) => {
+            setMovieDetails(response.data);
+            console.log(response.data);
         })
             .catch((error) => {
                 console.error(error); // Log any errors
             });
 
-    }, [])
+    }, [id])
     const { pathname } = useLocation();
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -35,6 +38,8 @@ function MovieDetails() {
                 <Cast movieDetails={movieDetails} />
                 <Backdrops movieDetails={movieDetails} />
                 <Trailer movieDetails={movieDetails} />
+                <Similar movieDetails={movieDetails} type={type} id={id}/>
+                <Recommendation movieDetails={movieDetails} type={type} id={id}/>
             </div>
 
         </div >
