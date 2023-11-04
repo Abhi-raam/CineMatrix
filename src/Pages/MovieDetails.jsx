@@ -16,7 +16,6 @@ function MovieDetails() {
     useEffect(() => {
         axios.get(`/${type}/${id}?append_to_response=credits,images,videos,similar,recommendations&api_key=${apiKey}`).then((response) => {
             setMovieDetails(response.data);
-            // e.log(response.data);
         })
             .catch((error) => {
                 console.error(error); // Log any errors

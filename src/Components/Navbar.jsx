@@ -14,15 +14,11 @@ function Navbar() {
         if(event.key === "Enter" && search?.length>0){
             navigate(`/search/${search}`);
             setSearch("")
-            // console.log("enter button clicked");
-            // console.log(search);
         }
     }
     function searchBtn() {
         navigate(`/search/${search}`);
         setSearch("")
-        // console.log("search button clicked");
-        // console.log(search);
     }
     return (
         <div className='fixed top-0 left-0 right-0 z-50 '>

@@ -6,46 +6,47 @@ import axios from '../Axios';
 import { apiKey } from '../Constants/Const';
 import RowCard from '../Components/RowCard';
 function SearchPage() {
-    const { query } = useParams()
-    const [searchData, setSearchData] = useState()
-    const [page, setPage] = useState(1)
-    // console.log("the entered value is " + query);
-    const url = `/search/multi?query=${query}&page=${page}&api_key=${apiKey}`
+    const { query } = useParams();
+    const [searchData, setSearchData] = useState({ results: [], total_pages: 0 });
+    const [page, setPage] = useState(1);
+
+    const url = `/search/multi?query=${query}&page=${page}&api_key=${apiKey}`;
+
+    async function fetchData(url) {
+        try {
+            const response = await axios.get(url);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            return null;
+        }
+    }
+
     async function initialCall() {
-        console.log("first call worked");
-        await axios.get(url).then((response) => {
-            // console.log(response.data);
-            // console.log(page);
-            setSearchData(response.data)
-            setPage((prev) => prev + 1);
-            console.log(page);
-        })
+        const data = await fetchData(url);
+        if (data) {
+            setSearchData(data);
+            setPage(page + 1);
+        }
     }
+
     async function secondCall() {
-        console.log("second call worked");
-        await axios.get(url).then((response) => {
-            // console.log(response.data);
-            // console.log(page);
-            if (searchData?.results) {
-                setData({...searchData,results: [...searchData.results, ...response.results],});
-              } else {
-                setData(response);
-              }
-              setPage((prev) => prev + 1);
-            })
+        const data = await fetchData(url);
+        if (data) {
+            setSearchData(prevData => ({
+                results: [...prevData.results, ...data.results],
+                total_pages: data.total_pages
+            }));
+            setPage(page + 1);
+        }
     }
+
     useEffect(() => {
-        // axios.get(`/search/multi?query=${query}&page=${page}&api_key=${apiKey}`).then((response) => {
-        //     console.log(response.data);
-        //     console.log(page);
-        //     setSearchData(response.data.results)
-        //     setPage(prevPage => prevPage + 1)
-        //     console.log(page);
-        // })
-        setPage(1)
-        initialCall()
+        setPage(1);
+        initialCall();
         window.scrollTo({ top: 0, behavior: "smooth" });
-    }, [query])
+    }, [query]);
+
     return (
         <div className='pt-20 px-5'>
             <div>
@@ -53,26 +54,25 @@ function SearchPage() {
             </div>
             <div>
                 <InfiniteScroll
-                    dataLength={searchData?.results?.length || []}
+                    dataLength={searchData.results.length}
                     hasMore={page <= searchData?.total_pages}
                     next={secondCall}
                     loader={
                         <div className='flex justify-center'>
                             <InfinitySpin
-                            width='250'
-                            color="#C3073F" />
-                        </div>
-                    }>
-                    <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                        {searchData?.results.map((item, index) => {
-                            if (item?.media_type === "person") return;
+                                width='250'
+                                color="#C3073F" />
+                        </div>}>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                        {searchData.results.map((item, index) => {
+                            if (item?.media_type === "person") return null;
                             return <RowCard key={index} movie={item} fromSearch={false} />;
                         })}
                     </div>
                 </InfiniteScroll>
             </div>
         </div>
-    )
+    );
 }
 
-export default SearchPage
+export default SearchPage;
