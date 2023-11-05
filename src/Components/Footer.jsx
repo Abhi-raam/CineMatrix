@@ -6,7 +6,7 @@ function Footer() {
       <div className=" pb-3">
         <h1>Copyright @ <span className="text-[#c3073f]">2023</span>
         </h1>
-        <h1>DESIGNED BY <span className="text-[#c3073f]">ABHIRAM</span>
+        <h1>DESIGNED BY <span className="text-[#c3073f]"><a target="_blank" href="https://abhiramsuresh.vercel.app/">ABHIRAM</a></span>
         </h1>
       </div>
     </div>

@@ -3,13 +3,14 @@ import axios from '../Axios';
 import noPoster from '../assets/noPoster.jpeg'
 import { imageUrl, title } from '../Constants/Const';
 import CircleRating from './CircleRating';
+import { apiKey } from '../Constants/Const';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
-function RowCard({ movie, type,fromSearch }) {
+function RowCard({ movie, type, fromSearch }) {
   const [genreData, setGenreData] = useState()
   useEffect(() => {
-    axios.get(title.generlist).then((response) => {
+    axios.get(`/genre/${type}/list?api_key=${apiKey}`).then((response)=>{
       setGenreData(response.data)
     })
   }, [title.generlist])
@@ -22,31 +23,31 @@ function RowCard({ movie, type,fromSearch }) {
   };
   const movieGenreNames = getGenreNames(movie.genre_ids);
   return (
-    <div className='relative hover:scale-110 transition duration-300 ease-in-out '>
-      <Link to={`/details/${type || movie?.media_type}/${movie.id}`} >
-
-        <div className='max-w-max rounded-md w-40 md:w-60 lg:w-72 mx-auto p-3'>
-          <img className='rounded-md w-full' src={movie.poster_path?imageUrl + `${movie.poster_path}`:noPoster} alt="" />
+    <div className=" px-0 md:px-5 lg:px-5 hover:scale-110 transition duration-300 ease-in-out">
+      <div className="w-full relative ">
+        <div className="max-w-max rounded-md w-40 md:w-60 lg:w-64 mx-auto  pt-7">
+          <Link to={`/details/${type || movie?.media_type}/${movie?.id}`}>
+            <img className='rounded-md w-full object-cover' src={movie.poster_path ? imageUrl + `${movie.poster_path}` : noPoster} alt="" />
+          </Link>
         </div>
-        {fromSearch && (
+        {!fromSearch && (
           <div>
-            
-        <div className="absolute  bottom-25 left-5">
-          <CircleRating rating={movie?.vote_average.toFixed(1)} />
-        </div>
-
-        <div className='hidden  md:flex justify-end mt-2 space-x-3 text-sm'>
-          {movieGenreNames.slice(0, 2).map((genreName, index) => (
-            <h1 key={index} className='text-white  bg-[#c3073f] px-4 py-1 rounded-full'>{genreName}</h1>
-            ))}
-        </div>
+            <div className="absolute bottom-[1rem] md:bottom-[0rem] left-2">
+              <CircleRating rating={movie?.vote_average.toFixed(1)} />
             </div>
-          )}
+            <div className="absolute bottom-2 right-1 hidden sm:flex w-[75%] text-center text-xs gap-3 justify-end">
+              {movieGenreNames.slice(0, 2).map((genreName, index) => (
+                <h1 key={index} className='text-white  bg-[#c3073f] p-1 px-3 rounded-full'>{genreName}</h1>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
 
-        <div className=' text-white pt-4 text-start max-w-[15rem] '>
-          <h1 className='uppercase font-semibold'>{movie.title || movie.original_name}</h1>
-          <p className="text-gray-500 text-xs font-medium mb-2">{dayjs(movie ? movie.release_date || movie.first_air_date : null).format("MMM DD YYYY")}</p>
-        </div>
+      <Link to={`/details/${type || movie?.media_type}/${movie?.id}`} className="w-full " >
+        <h2 className='uppercase font-semibold text-xs pt-3'>{movie.title || movie.original_name}</h2>
+        <p className="text-gray-500 text-xs font-medium mb-2">
+          {dayjs(movie?.release_date || movie?.first_air_date).format("MMM DD YYYY" )}</p>
       </Link>
     </div>
   )

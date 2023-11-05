@@ -4,7 +4,6 @@ export const imageUrl = 'https://image.tmdb.org/t/p/original/'
 const cast = 'https://api.themoviedb.org/3/movie/507089/credits?api_key='
 
 export const title = {
-    generlist :`/genre/movie/list?api_key=${apiKey}`,
     trending :`/trending/movie/day?api_key=${apiKey}`,
     upcoming :`/movie/upcoming?api_key=${apiKey}`,
     popular :`/movie/popular?api_key=${apiKey}`,

@@ -4,7 +4,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 const CircleRating = ({ rating }) => {
   return (
-    <div className=" sm:w-[3rem] font-bold  w-[2rem] ">
+    <div className=" font-bold w-[2rem] md:w-[2.5rem] ">
       <CircularProgressbar
         maxValue={10}
         value={rating}
