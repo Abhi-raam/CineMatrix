@@ -62,10 +62,10 @@ function DiscoverPage() {
                                 width='250'
                                 color="#C3073F" />
                         </div>}>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5">
+                    <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5">
                         {discover.results.map((item, index) => {
                             if (item?.media_type === "person") return null;
-                            return <RowCard key={index} movie={item} type={type} fromSearch={false} />;
+                            return <RowCard key={index} movie={item} type={type} fromSearch={false} discover={true} />;
                         })}
                     </div>
                 </InfiniteScroll>

@@ -7,7 +7,7 @@ import { apiKey } from '../Constants/Const';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
-function RowCard({ movie, type, fromSearch }) {
+function RowCard({ movie, type, fromSearch,discover }) {
   const [genreData, setGenreData] = useState()
   useEffect(() => {
     axios.get(`/genre/${type}/list?api_key=${apiKey}`).then((response)=>{
@@ -31,8 +31,9 @@ function RowCard({ movie, type, fromSearch }) {
           </Link>
         </div>
         {!fromSearch && (
-          <div>
-            <div className="absolute bottom-[1rem] md:bottom-[0rem] left-2">
+          <div className=''>
+            {/* <div className="absolute bottom-2 md:bottom-[0rem] left-5 md:left-3"> */}
+            <div className={discover? "absolute bottom-1 md:bottom-[0rem] left-7 md:left-3" : "absolute bottom-1 md:bottom-[0rem] left-1 md:left-2"}>
               <CircleRating rating={movie?.vote_average.toFixed(1)} />
             </div>
             <div className="absolute bottom-2 right-1 hidden sm:flex w-[75%] text-center text-xs gap-3 justify-end">
@@ -42,10 +43,11 @@ function RowCard({ movie, type, fromSearch }) {
             </div>
           </div>
         )}
+        
       </div>
 
       <Link to={`/details/${type || movie?.media_type}/${movie?.id}`} className="w-full " >
-        <h2 className='uppercase font-semibold text-xs pt-3'>{movie.title || movie.original_name}</h2>
+        <h2 className='uppercase font-semibold text-slate-200 text-xs pt-3'>{movie.title || movie.original_name}</h2>
         <p className="text-gray-500 text-xs font-medium mb-2">
           {dayjs(movie?.release_date || movie?.first_air_date).format("MMM DD YYYY" )}</p>
       </Link>
